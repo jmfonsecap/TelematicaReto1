@@ -48,7 +48,7 @@ class Cart(Cart_pb2_grpc.CartServicer):
     def GetCarLength(self, request, context):
         return Cart_pb2.Length(length= len(self.products))
     def GetPrecio(self, request, context):
-        product = self.products[request.productId-1]
+        product = self.products[request.pedidoId-1]
         total = (product.get_individual_price())*(product.get_quantity())
         return Cart_pb2.Precio(precio=total)
     def RemoveFromCart(self, request, context):
