@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "CartProto";
+option objc_class_prefix = "CrP";
+
+service Cart {
+  rpc AddToCart (Pedido) returns (Response) {}
+  rpc RemoveFromCart(PedidoId) returns (Response) {}
+  rpc ViewCart(Nada) returns (Response) {}
+  rpc ViewProductInCart(ProductId) returns (Response){}
+  rpc AddQuantity(PedidoId) returns (Response){}
+}
+
+message Pedido {
+  int32 pedidoId =1;
+  int32 productId =2;
+}
+
+message PedidoId{
+    int32 pedidoId =1;
+}
+message ProductId{
+    int32 productId=1;
+}
+message Nada{}
+
+message Response{
+  int32 status_code = 1;
+  string message =2;
+}

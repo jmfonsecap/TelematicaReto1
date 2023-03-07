@@ -24,8 +24,9 @@ import settings
 class Catalog(Catalog_pb2_grpc.CatalogServicer):
 
     products =[]
-    products.append(settings.Product(1,20,"Juan"))
-    products.append(settings.Product(2,10,"Carlos"))
+    products.append(settings.Product(1,20,"Iphone"))
+    products.append(settings.Product(2,10,"Estuche"))
+    products.append(settings.Product(3,1,"Xbox"))
     
     def SeeProduct(self, request, context):
         return Catalog_pb2.TransactionResponse(message='El producto buscado es, %i.%s y hay %i en stock' %(self.products[request.productId-1].get_id_product(),self.products[request.productId-1].get_name(),self.products[request.productId-1].get_stock()) )
@@ -41,12 +42,15 @@ class Catalog(Catalog_pb2_grpc.CatalogServicer):
         return Catalog_pb2.TransactionResponse(status_code=1)
     def GetStock(self, request, context):
         return Catalog_pb2.Stock(stock=self.products[request.productId-1].get_stock())
+    def GetName(self, request, context):
+        return Catalog_pb2.ProductName(name=self.products[request.productId-1].get_name())
     def AddQuantity(self, request, context):
         self.products[request.productId-1].set_stock(self.products[request.productId-1].get_stock()+request.stock)
         return Catalog_pb2.TransactionResponse(status_code=1)
     def DeleteQuantity(self, request, context):
         self.products[request.productId-1].set_stock(self.products[request.productId-1].get_stock()-request.stock)
         return Catalog_pb2.TransactionResponse(status_code=1)
+
 def serve():
     port = '8080'
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

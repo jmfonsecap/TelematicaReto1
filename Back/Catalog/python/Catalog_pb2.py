@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rCatalog.proto\"9\n\x07Product\x12\x11\n\tproductId\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05stock\x18\x03 \x01(\x05\"\x1e\n\tProductId\x12\x11\n\tproductId\x18\x01 \x01(\x05\")\n\x05Stock\x12\r\n\x05stock\x18\x01 \x01(\x05\x12\x11\n\tproductId\x18\x02 \x01(\x05\";\n\x13TransactionResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xa3\x02\n\x07\x43\x61talog\x12\x30\n\nSeeProduct\x12\n.ProductId\x1a\x14.TransactionResponse\"\x00\x12.\n\nAddProduct\x12\x08.Product\x1a\x14.TransactionResponse\"\x00\x12\x33\n\rDeleteProduct\x12\n.ProductId\x1a\x14.TransactionResponse\"\x00\x12 \n\x08GetStock\x12\n.ProductId\x1a\x06.Stock\"\x00\x12-\n\x0b\x41\x64\x64Quantity\x12\x06.Stock\x1a\x14.TransactionResponse\"\x00\x12\x30\n\x0e\x44\x65leteQuantity\x12\x06.Stock\x1a\x14.TransactionResponse\"\x00\x42\x15\x42\x0c\x43\x61talogProtoP\x01\xa2\x02\x02\x43Pb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rCatalog.proto\"9\n\x07Product\x12\x11\n\tproductId\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05stock\x18\x03 \x01(\x05\"\x1b\n\x0bProductName\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1e\n\tProductId\x12\x11\n\tproductId\x18\x01 \x01(\x05\")\n\x05Stock\x12\r\n\x05stock\x18\x01 \x01(\x05\x12\x11\n\tproductId\x18\x02 \x01(\x05\";\n\x13TransactionResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2\xca\x02\n\x07\x43\x61talog\x12\x30\n\nSeeProduct\x12\n.ProductId\x1a\x14.TransactionResponse\"\x00\x12.\n\nAddProduct\x12\x08.Product\x1a\x14.TransactionResponse\"\x00\x12\x33\n\rDeleteProduct\x12\n.ProductId\x1a\x14.TransactionResponse\"\x00\x12 \n\x08GetStock\x12\n.ProductId\x1a\x06.Stock\"\x00\x12%\n\x07GetName\x12\n.ProductId\x1a\x0c.ProductName\"\x00\x12-\n\x0b\x41\x64\x64Quantity\x12\x06.Stock\x1a\x14.TransactionResponse\"\x00\x12\x30\n\x0e\x44\x65leteQuantity\x12\x06.Stock\x1a\x14.TransactionResponse\"\x00\x42\x15\x42\x0c\x43\x61talogProtoP\x01\xa2\x02\x02\x43Pb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'Catalog_pb2', globals())
@@ -23,12 +23,14 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'B\014CatalogProtoP\001\242\002\002CP'
   _PRODUCT._serialized_start=17
   _PRODUCT._serialized_end=74
-  _PRODUCTID._serialized_start=76
-  _PRODUCTID._serialized_end=106
-  _STOCK._serialized_start=108
-  _STOCK._serialized_end=149
-  _TRANSACTIONRESPONSE._serialized_start=151
-  _TRANSACTIONRESPONSE._serialized_end=210
-  _CATALOG._serialized_start=213
-  _CATALOG._serialized_end=504
+  _PRODUCTNAME._serialized_start=76
+  _PRODUCTNAME._serialized_end=103
+  _PRODUCTID._serialized_start=105
+  _PRODUCTID._serialized_end=135
+  _STOCK._serialized_start=137
+  _STOCK._serialized_end=178
+  _TRANSACTIONRESPONSE._serialized_start=180
+  _TRANSACTIONRESPONSE._serialized_end=239
+  _CATALOG._serialized_start=242
+  _CATALOG._serialized_end=572
 # @@protoc_insertion_point(module_scope)

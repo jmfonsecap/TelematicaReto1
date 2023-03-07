@@ -20,6 +20,12 @@ class ProductId(_message.Message):
     productId: int
     def __init__(self, productId: _Optional[int] = ...) -> None: ...
 
+class ProductName(_message.Message):
+    __slots__ = ["name"]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    def __init__(self, name: _Optional[str] = ...) -> None: ...
+
 class Stock(_message.Message):
     __slots__ = ["productId", "stock"]
     PRODUCTID_FIELD_NUMBER: _ClassVar[int]
