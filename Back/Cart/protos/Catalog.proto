@@ -9,6 +9,7 @@ service Catalog {
   rpc AddProduct (Product) returns (TransactionResponse) {}
   rpc DeleteProduct (ProductId) returns (TransactionResponse) {}
   rpc GetStock (ProductId) returns (Stock) {}
+  rpc GetPrice (ProductId) returns (Price) {}
   rpc GetName (ProductId) returns (ProductName) {}
   rpc AddQuantity (Stock) returns (TransactionResponse) {}
   rpc DeleteQuantity(Stock) returns (TransactionResponse){}
@@ -30,6 +31,9 @@ message ProductId{
 message Stock{
   int32 stock =1;
   int32 productId=2;
+}
+message Price{
+  int32 price =1;
 }
 
 message TransactionResponse{

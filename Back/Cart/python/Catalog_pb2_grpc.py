@@ -34,6 +34,11 @@ class CatalogStub(object):
                 request_serializer=Catalog__pb2.ProductId.SerializeToString,
                 response_deserializer=Catalog__pb2.Stock.FromString,
                 )
+        self.GetPrice = channel.unary_unary(
+                '/Catalog/GetPrice',
+                request_serializer=Catalog__pb2.ProductId.SerializeToString,
+                response_deserializer=Catalog__pb2.Price.FromString,
+                )
         self.GetName = channel.unary_unary(
                 '/Catalog/GetName',
                 request_serializer=Catalog__pb2.ProductId.SerializeToString,
@@ -73,6 +78,12 @@ class CatalogServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetStock(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPrice(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -118,6 +129,11 @@ def add_CatalogServicer_to_server(servicer, server):
                     servicer.GetStock,
                     request_deserializer=Catalog__pb2.ProductId.FromString,
                     response_serializer=Catalog__pb2.Stock.SerializeToString,
+            ),
+            'GetPrice': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPrice,
+                    request_deserializer=Catalog__pb2.ProductId.FromString,
+                    response_serializer=Catalog__pb2.Price.SerializeToString,
             ),
             'GetName': grpc.unary_unary_rpc_method_handler(
                     servicer.GetName,
@@ -209,6 +225,23 @@ class Catalog(object):
         return grpc.experimental.unary_unary(request, target, '/Catalog/GetStock',
             Catalog__pb2.ProductId.SerializeToString,
             Catalog__pb2.Stock.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPrice(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Catalog/GetPrice',
+            Catalog__pb2.ProductId.SerializeToString,
+            Catalog__pb2.Price.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

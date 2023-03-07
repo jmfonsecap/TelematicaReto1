@@ -27,11 +27,11 @@ import settings
 class Cart(Cart_pb2_grpc.CartServicer):
 
     products=[]
-    products.append(settings.Product(1,1,"Iphone"))
-    products.append(settings.Product(2,2,"Estuche"))
+    products.append(settings.Product(1,1,5000,"Iphone"))
+    products.append(settings.Product(2,2,10000,"Estuche"))
 
     def AddToCart(self, request, context):
-        with grpc.insecure_channel('18.206.192.20:8080') as channel:
+        with grpc.insecure_channel('18.204.5.43:8080') as channel:
             stub = Catalog_pb2_grpc.CatalogStub(channel)
             response = stub.GetStock(Catalog_pb2.ProductId(productId=request.productId))
             if response.stock <= 0:
@@ -39,13 +39,25 @@ class Cart(Cart_pb2_grpc.CartServicer):
             else:
                 stub.DeleteQuantity(Catalog_pb2.Stock(productId=request.productId,stock=1))
                 name = stub.GetName(Catalog_pb2.ProductId(productId=request.productId))
-                self.products.append(settings.Product(request.productId,1,name.name))
+                price = stub.GetPrice(Catalog_pb2.ProductId(productId=request.productId))
+                self.products.append(settings.Product(request.productId,1,price.price,name.name))
                 return Cart_pb2.Response(status_code=1)
     def ViewProductInCart(self, request, context):
         producto= self.products[request.productId-1]
         return Cart_pb2.Response(message= 'El objeto en carrito %i. es %s y tiene %i agregado/s'%(producto.get_id_product(),producto.get_name(),producto.get_quantity()))
-        
-    
+    def GetCarLength(self, request, context):
+        return Cart_pb2.Length(length= len(self.products))
+    def GetPrecio(self, request, context):
+        product = self.products[request.productId-1]
+        total = (product.get_individual_price())*(product.get_quantity())
+        return Cart_pb2.Precio(precio=total)
+    def RemoveFromCart(self, request, context):
+        product_to_delete = self.products[request.productId-1]
+        product_to_delete.set_id_product(0)
+        product_to_delete.set_quantity(0)
+        product_to_delete.set_price(0)
+        product_to_delete.set_name("")
+        return Catalog_pb2.TransactionResponse(status_code=1)
 def run():
     # NOTE(gRPC Python Team): .close() is possible on a channel and should be
     # used in circumstances in which the with statement does not fit the needs

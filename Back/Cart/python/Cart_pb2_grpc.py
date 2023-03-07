@@ -39,6 +39,16 @@ class CartStub(object):
                 request_serializer=Cart__pb2.PedidoId.SerializeToString,
                 response_deserializer=Cart__pb2.Response.FromString,
                 )
+        self.GetCarLength = channel.unary_unary(
+                '/Cart/GetCarLength',
+                request_serializer=Cart__pb2.Nada.SerializeToString,
+                response_deserializer=Cart__pb2.Length.FromString,
+                )
+        self.GetPrecio = channel.unary_unary(
+                '/Cart/GetPrecio',
+                request_serializer=Cart__pb2.PedidoId.SerializeToString,
+                response_deserializer=Cart__pb2.Precio.FromString,
+                )
 
 
 class CartServicer(object):
@@ -74,6 +84,18 @@ class CartServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetCarLength(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPrecio(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CartServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -101,6 +123,16 @@ def add_CartServicer_to_server(servicer, server):
                     servicer.AddQuantity,
                     request_deserializer=Cart__pb2.PedidoId.FromString,
                     response_serializer=Cart__pb2.Response.SerializeToString,
+            ),
+            'GetCarLength': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCarLength,
+                    request_deserializer=Cart__pb2.Nada.FromString,
+                    response_serializer=Cart__pb2.Length.SerializeToString,
+            ),
+            'GetPrecio': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPrecio,
+                    request_deserializer=Cart__pb2.PedidoId.FromString,
+                    response_serializer=Cart__pb2.Precio.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -194,5 +226,39 @@ class Cart(object):
         return grpc.experimental.unary_unary(request, target, '/Cart/AddQuantity',
             Cart__pb2.PedidoId.SerializeToString,
             Cart__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetCarLength(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Cart/GetCarLength',
+            Cart__pb2.Nada.SerializeToString,
+            Cart__pb2.Length.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPrecio(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Cart/GetPrecio',
+            Cart__pb2.PedidoId.SerializeToString,
+            Cart__pb2.Precio.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

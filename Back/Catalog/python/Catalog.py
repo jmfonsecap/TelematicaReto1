@@ -24,9 +24,9 @@ import settings
 class Catalog(Catalog_pb2_grpc.CatalogServicer):
 
     products =[]
-    products.append(settings.Product(1,20,"Iphone"))
-    products.append(settings.Product(2,10,"Estuche"))
-    products.append(settings.Product(3,1,"Xbox"))
+    products.append(settings.Product(1,20,5000,"Iphone"))
+    products.append(settings.Product(2,10,100,"Estuche"))
+    products.append(settings.Product(3,1,10000,"Xbox"))
     
     def SeeProduct(self, request, context):
         return Catalog_pb2.TransactionResponse(message='El producto buscado es, %i.%s y hay %i en stock' %(self.products[request.productId-1].get_id_product(),self.products[request.productId-1].get_name(),self.products[request.productId-1].get_stock()) )
@@ -38,6 +38,7 @@ class Catalog(Catalog_pb2_grpc.CatalogServicer):
         product_to_delete = self.products[request.productId-1]
         product_to_delete.set_id_product(0)
         product_to_delete.set_stock(0)
+        product_to_delete.set_price(0)
         product_to_delete.set_name("")
         return Catalog_pb2.TransactionResponse(status_code=1)
     def GetStock(self, request, context):
@@ -50,6 +51,8 @@ class Catalog(Catalog_pb2_grpc.CatalogServicer):
     def DeleteQuantity(self, request, context):
         self.products[request.productId-1].set_stock(self.products[request.productId-1].get_stock()-request.stock)
         return Catalog_pb2.TransactionResponse(status_code=1)
+    def GetPrice(self, request, context):
+        return Catalog_pb2.Price(price=self.products[request.productId-1].get_price())
 
 def serve():
     port = '8080'

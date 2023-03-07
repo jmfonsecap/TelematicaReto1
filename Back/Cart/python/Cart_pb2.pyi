@@ -4,6 +4,12 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class Length(_message.Message):
+    __slots__ = ["length"]
+    LENGTH_FIELD_NUMBER: _ClassVar[int]
+    length: int
+    def __init__(self, length: _Optional[int] = ...) -> None: ...
+
 class Nada(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
@@ -21,6 +27,12 @@ class PedidoId(_message.Message):
     PEDIDOID_FIELD_NUMBER: _ClassVar[int]
     pedidoId: int
     def __init__(self, pedidoId: _Optional[int] = ...) -> None: ...
+
+class Precio(_message.Message):
+    __slots__ = ["precio"]
+    PRECIO_FIELD_NUMBER: _ClassVar[int]
+    precio: int
+    def __init__(self, precio: _Optional[int] = ...) -> None: ...
 
 class ProductoId(_message.Message):
     __slots__ = ["productId"]
