@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "CatalogProto";
+option objc_class_prefix = "CP";
+
+service Catalog {
+  rpc SeeProduct (ProductId) returns (TransactionResponse) {}
+  rpc AddProduct (Product) returns (TransactionResponse) {}
+  rpc DeleteProduct (ProductId) returns (TransactionResponse) {}
+  rpc GetStock (ProductId) returns (Stock) {}
+  rpc AddQuantity (Stock) returns (TransactionResponse) {}
+  rpc DeleteQuantity(Stock) returns (TransactionResponse){}
+}
+
+message Product {
+  int32 productId =1;
+  string name = 2;
+  int32 stock=3;
+}
+
+message ProductId{
+  int32 productId =1;
+}
+message Stock{
+  int32 stock =1;
+  int32 productId=2;
+}
+
+message TransactionResponse{
+  int32 status_code = 1;
+  string message =2;
+}
