@@ -22,7 +22,7 @@ class PedidoId(_message.Message):
     pedidoId: int
     def __init__(self, pedidoId: _Optional[int] = ...) -> None: ...
 
-class ProductId(_message.Message):
+class ProductoId(_message.Message):
     __slots__ = ["productId"]
     PRODUCTID_FIELD_NUMBER: _ClassVar[int]
     productId: int

@@ -14,7 +14,7 @@
 """The Python implementation of the GRPC helloworld.Greeter client."""
 
 from __future__ import print_function
-
+from concurrent import futures
 import logging
 
 import grpc
@@ -26,12 +26,13 @@ def run():
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
     print("Will try to greet world ...")
-    with grpc.insecure_channel('18.206.192.20:8080') as channel:
+    with grpc.insecure_channel('localhost:8080') as channel:
         stub = Cart_pb2_grpc.CartStub(channel)
-        response = stub.ViewProductInCart(Cart_pb2.ProductId(productId=2))
+        response = stub.ViewProductInCart(Cart_pb2.ProductoId(productId=2))
         print("Greeter client received: " + response.message)
         stub.AddToCart(Cart_pb2.Pedido(productId=3))
-        response = stub.ViewProductInCart(Cart_pb2.ProductId(productId=3))
+        response = stub.ViewProductInCart(Cart_pb2.ProductoId(productId=3))
+        print("Greeter client received: " + response.message)
         response= stub.AddToCart(Cart_pb2.Pedido(productId=3))
         if(response.status_code==0):
             print(response.message)

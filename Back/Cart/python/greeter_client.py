@@ -14,7 +14,7 @@
 """The Python implementation of the GRPC helloworld.Greeter client."""
 
 from __future__ import print_function
-
+from concurrent import futures
 import logging
 
 import grpc
@@ -31,19 +31,19 @@ class Cart(Cart_pb2_grpc.CartServicer):
     products.append(settings.Product(2,2,"Estuche"))
 
     def AddToCart(self, request, context):
-        with grpc.insecure_channel('localhost:8080') as channel:
+        with grpc.insecure_channel('18.206.192.20:8080') as channel:
             stub = Catalog_pb2_grpc.CatalogStub(channel)
             response = stub.GetStock(Catalog_pb2.ProductId(productId=request.productId))
-            if response <= 0:
+            if response.stock <= 0:
                 return Cart_pb2.Response(status_code=0,message="No quedan items en la tienda")
             else:
                 stub.DeleteQuantity(Catalog_pb2.Stock(productId=request.productId,stock=1))
                 name = stub.GetName(Catalog_pb2.ProductId(productId=request.productId))
-                self.products.append(settings.Product(request.productId,1,name))
+                self.products.append(settings.Product(request.productId,1,name.name))
                 return Cart_pb2.Response(status_code=1)
     def ViewProductInCart(self, request, context):
-        producto= self.products[request.productId]
-        return Cart_pb2.Response(message= 'El objeto en carrito %i. es %s y tiene %i agregado/s'%(producto.get_id_product(),get_name(),get_quantity()))
+        producto= self.products[request.productId-1]
+        return Cart_pb2.Response(message= 'El objeto en carrito %i. es %s y tiene %i agregado/s'%(producto.get_id_product(),producto.get_name(),producto.get_quantity()))
         
     
 def run():

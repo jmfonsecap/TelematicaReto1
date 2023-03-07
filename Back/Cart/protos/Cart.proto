@@ -8,7 +8,7 @@ service Cart {
   rpc AddToCart (Pedido) returns (Response) {}
   rpc RemoveFromCart(PedidoId) returns (Response) {}
   rpc ViewCart(Nada) returns (Response) {}
-  rpc ViewProductInCart(ProductId) returns (Response){}
+  rpc ViewProductInCart(ProductoId) returns (Response){}
   rpc AddQuantity(PedidoId) returns (Response){}
 }
 
@@ -20,7 +20,7 @@ message Pedido {
 message PedidoId{
     int32 pedidoId =1;
 }
-message ProductId{
+message ProductoId{
     int32 productId=1;
 }
 message Nada{}

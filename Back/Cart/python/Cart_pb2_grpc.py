@@ -31,7 +31,7 @@ class CartStub(object):
                 )
         self.ViewProductInCart = channel.unary_unary(
                 '/Cart/ViewProductInCart',
-                request_serializer=Cart__pb2.ProductId.SerializeToString,
+                request_serializer=Cart__pb2.ProductoId.SerializeToString,
                 response_deserializer=Cart__pb2.Response.FromString,
                 )
         self.AddQuantity = channel.unary_unary(
@@ -94,7 +94,7 @@ def add_CartServicer_to_server(servicer, server):
             ),
             'ViewProductInCart': grpc.unary_unary_rpc_method_handler(
                     servicer.ViewProductInCart,
-                    request_deserializer=Cart__pb2.ProductId.FromString,
+                    request_deserializer=Cart__pb2.ProductoId.FromString,
                     response_serializer=Cart__pb2.Response.SerializeToString,
             ),
             'AddQuantity': grpc.unary_unary_rpc_method_handler(
@@ -175,7 +175,7 @@ class Cart(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Cart/ViewProductInCart',
-            Cart__pb2.ProductId.SerializeToString,
+            Cart__pb2.ProductoId.SerializeToString,
             Cart__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
