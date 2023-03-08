@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "google.golang.org/grpc/examples/helloworld/helloworld";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+
+service Cart {
+  rpc AddToCart (Pedido) returns (Response) {}
+  rpc RemoveFromCart(PedidoId) returns (Response) {}
+  rpc ViewCart(Nada) returns (Response) {}
+  rpc ViewProductInCart(ProductoId) returns (Response){}
+  rpc AddQuantity(PedidoId) returns (Response){}
+  rpc GetCarLength(Nada) returns (Length){}
+  rpc GetPrecio(PedidoId) returns (Precio){}
+}
+
+message Pedido {
+  int32 pedidoId =1;
+  int32 productId =2;
+}
+
+message Length{
+  int32 length=1;
+}
+message PedidoId{
+    int32 pedidoId =1;
+}
+message ProductoId{
+    int32 productId=1;
+}
+message Precio{
+    int32 precio=1;
+}
+message Nada{}
+
+message Response{
+  int32 status_code = 1;
+  string message =2;
+}
