@@ -31,7 +31,7 @@ class Catalog(Catalog_pb2_grpc.CatalogServicer):
     def SeeProduct(self, request, context):
         return Catalog_pb2.TransactionResponse(message='El producto buscado es, %i.%s y hay %i en stock' %(self.products[request.productId-1].get_id_product(),self.products[request.productId-1].get_name(),self.products[request.productId-1].get_stock()) )
     def AddProduct(self, request, context):
-        product_to_add = settings.Product(len(self.products)+1, request.stock, request.nombre)
+        product_to_add = settings.Product(len(self.products)+1, request.stock,request.price, request.nombre)
         self.products.append(product_to_add)
         return Catalog_pb2.TransactionResponse(status_code=1)
     def DeleteProduct(self, request, context):

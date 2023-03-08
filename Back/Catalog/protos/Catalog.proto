@@ -19,6 +19,7 @@ message Product {
   int32 productId =1;
   string nombre = 2;
   int32 stock=3;
+  int32 price =4;
 }
 
 message ProductName{
