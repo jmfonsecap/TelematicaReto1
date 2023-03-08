@@ -58,6 +58,10 @@ class Cart(Cart_pb2_grpc.CartServicer):
         product_to_delete.set_price(0)
         product_to_delete.set_name("")
         return Catalog_pb2.TransactionResponse(status_code=1)
+    def ViewCart(self, request, context):
+        carrito = "Los objetos en el carrito son: \n"
+        for i in self.products:
+            carrito =  i.getName()+" y tiene agregado "+ str(i.getQuantity())+" \n"
 def run():
     # NOTE(gRPC Python Team): .close() is possible on a channel and should be
     # used in circumstances in which the with statement does not fit the needs
