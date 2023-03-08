@@ -32,14 +32,20 @@ def Remove():
             stub = Cart_pb2_grpc.CartStub(channel)
             stub.RemoveFromCart(Cart_pb2.PedidoId(pedidoId=int(body["pedidoId"])))
 
-@post('/cart/')
+@route('/cart/')
 def Remove():
     body = request.json
     with grpc.insecure_channel('3.84.222.54:8080') as channel:
             stub = Cart_pb2_grpc.CartStub(channel)
             response = stub.ViewCart(Cart_pb2.Nada())
     return response.message
-       
+@post('/cart/AddQuantity')
+def AddQuantity():
+    body = request.json
+    with grpc.insecure_channel('3.84.222.54:8080') as channel:
+            stub = Cart_pb2_grpc.CartStub(channel)
+            stub.AddQuantity(Cart_pb2.PedidoId(pedidoId=int(body["pedidoId"])))
+  
 #Catalog
 @route('/catalog/ViewProduct')
 def ViewProduct():
@@ -104,6 +110,13 @@ def PayAll():
     with grpc.insecure_channel('34.207.120.145:8080') as channel:
             stub = Payment_pb2_grpc.PaymentStub(channel)
             response = stub.PagarTodoCarro(Payment_pb2.Nones())
+    return response.message
+@route('/payment/Pay')
+def Pay():
+    body = request.json
+    with grpc.insecure_channel('34.207.120.145:8080') as channel:
+            stub = Payment_pb2_grpc.PaymentStub(channel)
+            response = stub.PagarItemEnElCarro(Payment_pb2.ItemId(itemId=int(body["itemId"]) ))
     return response.message
 
       
