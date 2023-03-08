@@ -17,7 +17,7 @@ service Catalog {
 
 message Product {
   int32 productId =1;
-  string name = 2;
+  string nombre = 2;
   int32 stock=3;
 }
 

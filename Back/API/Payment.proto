@@ -6,14 +6,14 @@ option java_package = "io.grpc.examples.helloworld";
 option java_outer_classname = "HelloWorldProto";
 
 service Payment {
-  rpc PagarTodoCarro (None) returns (Respuesta) {}
+  rpc PagarTodoCarro (Nones) returns (Respuesta) {}
   rpc PagarItemEnElCarro(ItemId) returns (Respuesta) {}
 }
 
 message ItemId {
   int32 pedidoId =1;
 }
-message None{}
+message Nones{}
 
 message Respuesta{
   int32 status_code = 1;

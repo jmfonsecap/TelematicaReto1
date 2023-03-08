@@ -16,7 +16,7 @@ class PaymentStub(object):
         """
         self.PagarTodoCarro = channel.unary_unary(
                 '/Payment/PagarTodoCarro',
-                request_serializer=Payment__pb2.None.SerializeToString,
+                request_serializer=Payment__pb2.Nones.SerializeToString,
                 response_deserializer=Payment__pb2.Respuesta.FromString,
                 )
         self.PagarItemEnElCarro = channel.unary_unary(
@@ -46,7 +46,7 @@ def add_PaymentServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'PagarTodoCarro': grpc.unary_unary_rpc_method_handler(
                     servicer.PagarTodoCarro,
-                    request_deserializer=Payment__pb2.None.FromString,
+                    request_deserializer=Payment__pb2.Nones.FromString,
                     response_serializer=Payment__pb2.Respuesta.SerializeToString,
             ),
             'PagarItemEnElCarro': grpc.unary_unary_rpc_method_handler(
@@ -76,7 +76,7 @@ class Payment(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Payment/PagarTodoCarro',
-            Payment__pb2.None.SerializeToString,
+            Payment__pb2.Nones.SerializeToString,
             Payment__pb2.Respuesta.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

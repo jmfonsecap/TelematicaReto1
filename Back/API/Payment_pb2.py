@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rPayment.proto\"\x1a\n\x06ItemId\x12\x10\n\x08pedidoId\x18\x01 \x01(\x05\"\x06\n\x04None\"1\n\tRespuesta\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2]\n\x07Payment\x12%\n\x0ePagarTodoCarro\x12\x05.None\x1a\n.Respuesta\"\x00\x12+\n\x12PagarItemEnElCarro\x12\x07.ItemId\x1a\n.Respuesta\"\x00\x42g\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01Z5google.golang.org/grpc/examples/helloworld/helloworldb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rPayment.proto\"\x1a\n\x06ItemId\x12\x10\n\x08pedidoId\x18\x01 \x01(\x05\"\x07\n\x05Nones\"1\n\tRespuesta\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2^\n\x07Payment\x12&\n\x0ePagarTodoCarro\x12\x06.Nones\x1a\n.Respuesta\"\x00\x12+\n\x12PagarItemEnElCarro\x12\x07.ItemId\x1a\n.Respuesta\"\x00\x42g\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01Z5google.golang.org/grpc/examples/helloworld/helloworldb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'Payment_pb2', globals())
@@ -23,10 +23,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'\n\033io.grpc.examples.helloworldB\017HelloWorldProtoP\001Z5google.golang.org/grpc/examples/helloworld/helloworld'
   _ITEMID._serialized_start=17
   _ITEMID._serialized_end=43
-  _NONE._serialized_start=45
-  _NONE._serialized_end=51
-  _RESPUESTA._serialized_start=53
-  _RESPUESTA._serialized_end=102
-  _PAYMENT._serialized_start=104
-  _PAYMENT._serialized_end=197
+  _NONES._serialized_start=45
+  _NONES._serialized_end=52
+  _RESPUESTA._serialized_start=54
+  _RESPUESTA._serialized_end=103
+  _PAYMENT._serialized_start=105
+  _PAYMENT._serialized_end=199
 # @@protoc_insertion_point(module_scope)

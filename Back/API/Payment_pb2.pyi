@@ -10,7 +10,7 @@ class ItemId(_message.Message):
     pedidoId: int
     def __init__(self, pedidoId: _Optional[int] = ...) -> None: ...
 
-class None(_message.Message):
+class Nones(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
 

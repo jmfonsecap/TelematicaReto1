@@ -10,18 +10,29 @@ import Payment_pb2_grpc
 @route('/')
 def hello():
     return "Hello World"
-
+#Cart
 @route('/cart/ViewProduct')
 def ViewProductInCart():
-    body = request.body.read()
-    body = body.replace("+","").replace("payload=","")
-    parsedBody = urllib.unquote(body).decode('utf8')
-    jsonObj = json.loads(parsedBody)
-    with grpc.insecure_channel('18.204.5.43:8080') as channel:
+    body = request.json
+    with grpc.insecure_channel('3.84.222.54:8080') as channel:
             stub = Cart_pb2_grpc.CartStub(channel)
-            response =stub.ViewProductInCart(Cart_pb2.ProductoId(productId=jsonObj.productId))
+            response =stub.ViewProductInCart(Cart_pb2.ProductoId(productId=int(body["productId"])))
     return response.message
-    
+#Catalog
+@post('/catalog/Add')   
+def AddProduct():
+    body = request.json
+    with grpc.insecure_channel('100.26.18.159:8080') as channel:
+            stub = Catalog_pb2_grpc.CatalogStub(channel)
+            stub.AddProduct(Catalog_pb2.Product(name= "MyHeart",stock=2))
+@route('/catalog/ViewProduct')
+def ViewProduct():
+    body = request.json
+    with grpc.insecure_channel('100.26.18.159:8080') as channel:
+            stub = Catalog_pb2_grpc.CatalogStub(channel)
+            response = stub.SeeProduct(Catalog_pb2.Product(productId=int(body["productId"])))
+    return response.message
+      
     
 
 run(host= 'localhost',port= 8080, debug=True)
