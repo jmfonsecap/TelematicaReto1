@@ -11,14 +11,14 @@ class Price(_message.Message):
     def __init__(self, price: _Optional[int] = ...) -> None: ...
 
 class Product(_message.Message):
-    __slots__ = ["name", "productId", "stock"]
-    NAME_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ["nombre", "productId", "stock"]
+    NOMBRE_FIELD_NUMBER: _ClassVar[int]
     PRODUCTID_FIELD_NUMBER: _ClassVar[int]
     STOCK_FIELD_NUMBER: _ClassVar[int]
-    name: str
+    nombre: str
     productId: int
     stock: int
-    def __init__(self, productId: _Optional[int] = ..., name: _Optional[str] = ..., stock: _Optional[int] = ...) -> None: ...
+    def __init__(self, productId: _Optional[int] = ..., nombre: _Optional[str] = ..., stock: _Optional[int] = ...) -> None: ...
 
 class ProductId(_message.Message):
     __slots__ = ["productId"]
