@@ -24,7 +24,7 @@ def AddProduct():
     body = request.json
     with grpc.insecure_channel('100.26.18.159:8080') as channel:
             stub = Catalog_pb2_grpc.CatalogStub(channel)
-            stub.AddProduct(Catalog_pb2.Product(nombre= "MyHeart",stock=2))
+            stub.AddProduct(Catalog_pb2.Product(nombre= body["name"],stock=int(body["stock"])))
 @route('/catalog/ViewProduct')
 def ViewProduct():
     body = request.json
