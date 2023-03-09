@@ -33,7 +33,7 @@ La quinta es imgenes contiene imagenes para la documentación.
 
 ## Arquitectura de la solución planteada.
 
-![alt text](https://raw.githubusercontent.com/jmfonsecap/TelematicaReto1/imagenes/TeleArquitectura.png)
+![alt text](https://raw.githubusercontent.com/jmfonsecap/TelematicaReto1/Imagenes/TeleArquitectura.png)
 
 ## Resultados Logrados
 
